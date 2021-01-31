@@ -1,0 +1,135 @@
+/* global stuff */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-color: #222;
+    --light-color: #fff;
+    --alert-color: #ff0;
+}
+
+body {
+    background: var(--dark-color);
+    color: var(--light-color);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+main {
+    width: 900px;
+    margin: 0 auto;
+}
+
+/* game */
+
+#game {
+    background-color: var(--light-color);
+    width: 100%;
+    height: 700px;
+    position: relative;
+    border-radius: 15px;
+}
+
+/* goal */
+
+#goal {
+    position: absolute;
+    background-color: var(--light-color);
+    right: -100px;
+    width: 100px;
+    height: 100px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* blocks */
+
+.block {
+    position: absolute;
+    background-color: green;
+    transition: all 100ms;
+    border: 7px solid darkgreen;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 15px;
+}
+
+.block.player {
+    background-color: red;
+    border: 7px solid rgb(212, 7, 7);
+}
+
+/* info */
+
+#info {
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+#levelInfo {
+    float: right;
+}
+
+.scaleUp {
+    animation: scaleUp 2s forwards;
+}
+
+@keyframes scaleUp {
+    0% {
+        color: var(--light-color);
+        transform: scale(1);
+    }
+    50% {
+        color: var(--alert-color);
+        transform: scale(1.2);
+    }
+    100% {
+        color: var(--light-color);
+        transform: scale(1);
+    }
+}
+
+/* win message */
+
+.winMessage {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 80px;
+    color: var(--dark-color);
+    font-weight: 900;
+    z-index: 20;
+}
+
+.replayBtn {
+    outline: none;
+    font-family: inherit;
+    padding: 20px 30px;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--dark-color);
+    background: transparent;
+    border: 1px solid var(--dark-color);
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.replayBtn:hover,
+.replayBtn:focus {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
