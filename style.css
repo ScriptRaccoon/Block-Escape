@@ -9,7 +9,10 @@
 :root {
     --dark-color: #222;
     --light-color: #fff;
-    --alert-color: #ff0;
+    --block-color: #008000;
+    --block-border-color: #006400;
+    --player-color: #ff0000;
+    --player-border-color: #c50909;
 }
 
 body {
@@ -23,7 +26,7 @@ body {
 }
 
 main {
-    width: 900px;
+    min-width: 900px;
     margin: 0 auto;
 }
 
@@ -53,17 +56,17 @@ main {
 
 .block {
     position: absolute;
-    background-color: green;
+    background-color: var(--block-color);
     transition: all 100ms;
-    border: 7px solid darkgreen;
+    border: 7px solid var(--block-border-color);
     cursor: pointer;
     z-index: 10;
     border-radius: 15px;
 }
 
 .block.player {
-    background-color: red;
-    border: 7px solid rgb(212, 7, 7);
+    background-color: var(--player-color);
+    border: 7px solid var(--player-border-color);
 }
 
 /* info */
@@ -71,27 +74,25 @@ main {
 #info {
     padding-top: 20px;
     font-size: 30px;
-}
-
-#levelInfo {
-    float: right;
+    text-align: center;
 }
 
 .scaleUp {
-    animation: scaleUp 2s forwards;
+    animation: scaleUp 1s forwards;
+}
+
+#levelInfo {
+    display: inline-block;
 }
 
 @keyframes scaleUp {
     0% {
-        color: var(--light-color);
         transform: scale(1);
     }
     50% {
-        color: var(--alert-color);
         transform: scale(1.2);
     }
     100% {
-        color: var(--light-color);
         transform: scale(1);
     }
 }
@@ -118,7 +119,7 @@ main {
     font-weight: 900;
     color: var(--dark-color);
     background: transparent;
-    border: 1px solid var(--dark-color);
+    border: 5px solid var(--dark-color);
     border-radius: 10px;
     cursor: pointer;
     position: absolute;
@@ -132,4 +133,30 @@ main {
 .replayBtn:focus {
     background-color: var(--dark-color);
     color: var(--light-color);
+}
+
+/* media queries */
+
+@media (max-width: 1150px) {
+    main {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        transform: scale(0.6);
+    }
+}
+
+@media (max-width: 670px) {
+    main {
+        transform: scale(0.4);
+    }
+}
+
+@media (max-width: 450px) {
+    main {
+        transform: scale(0.3);
+    }
 }
