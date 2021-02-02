@@ -57,7 +57,7 @@ main {
 .block {
     position: absolute;
     background-color: var(--block-color);
-    transition: all 100ms;
+    transition: all 100ms linear;
     border: 7px solid var(--block-border-color);
     cursor: pointer;
     z-index: 10;

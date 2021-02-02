@@ -60,12 +60,32 @@ export class Block {
         ];
         if (relativePos[0] > this.size[0] / 2 && this.type === TYPE.HORIZONTAL) {
             this.move("right");
+            if (e.shiftKey) {
+                setTimeout(() => {
+                    this.move("right");
+                }, 100);
+            }
         } else if (relativePos[0] < this.size[0] / 2 && this.type === TYPE.HORIZONTAL) {
             this.move("left");
+            if (e.shiftKey) {
+                setTimeout(() => {
+                    this.move("left");
+                }, 100);
+            }
         } else if (relativePos[1] > this.size[1] / 2 && this.type === TYPE.VERTICAL) {
             this.move("down");
+            if (e.shiftKey) {
+                setTimeout(() => {
+                    this.move("down");
+                }, 100);
+            }
         } else if (relativePos[1] < this.size[1] / 2 && this.type === TYPE.VERTICAL) {
             this.move("up");
+            if (e.shiftKey) {
+                setTimeout(() => {
+                    this.move("up");
+                }, 100);
+            }
         }
     }
 
