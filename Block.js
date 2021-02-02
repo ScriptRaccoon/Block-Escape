@@ -106,6 +106,7 @@ export class Block {
                     left: this.left * UNIT + "px",
                 });
                 if (this.isPlayer && this.right === LEVEL_WIDTH + 1) {
+                    this.finish();
                     this.level.handleWin();
                 }
                 break;

@@ -17,7 +17,7 @@ export class Game {
     }
 
     switchLevel() {
-        this.currentLevel.stop();
+        this.currentLevel.finish();
         if (this.currentLevelIndex >= this.levelList.length - 1) {
             this.handleWin();
             return;

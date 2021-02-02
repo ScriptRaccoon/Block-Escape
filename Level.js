@@ -13,17 +13,21 @@ export class Level {
             }
         }
         this.won = false;
-        this.player = blockList.find((block) => block.isPlayer);
-        if (!this.player) {
+        this.playerList = blockList.filter((block) => block.isPlayer);
+        if (this.playerList.length === 0) {
             console.error("No player found");
             return;
         }
-        this.goalHeight = this.player.pos[1];
         this.isActive = false;
     }
 
     start() {
-        $("#goal").css({ top: this.goalHeight * UNIT + "px" });
+        for (const player of this.playerList) {
+            $("<div></div>")
+                .addClass("goal")
+                .css({ top: player.pos[1] * UNIT + "px" })
+                .appendTo("#game");
+        }
         for (const block of this.blockList) {
             block.element.appendTo("#game");
         }
@@ -34,17 +38,14 @@ export class Level {
         }, 2000);
     }
 
-    stop() {
+    finish() {
+        $("#game").html("");
         this.isActive = false;
-        for (const block of this.blockList) {
-            block.element.remove();
-        }
+        this.won = true;
     }
 
     handleWin() {
-        this.isActive = false;
-        this.won = true;
-        this.player.element.fadeOut(1000);
+        if (!this.playerList.every((player) => player.finished)) return;
         setTimeout(() => {
             this.game.switchLevel();
         }, 1000);
