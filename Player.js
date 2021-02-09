@@ -14,6 +14,8 @@ export class Player extends Block {
 
     finish() {
         this.finished = true;
-        this.element.fadeOut(1000);
+        this.element.fadeOut(1000, () => {
+            this.remove();
+        });
     }
 }

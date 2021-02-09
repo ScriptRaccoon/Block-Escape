@@ -51,6 +51,12 @@ export class Block {
         return this.pos[1] + this.size[1];
     }
 
+    remove() {
+        this.element.remove();
+        const i = this.level.blockList.indexOf(this);
+        this.level.blockList.splice(i, 1);
+    }
+
     handleClick(e) {
         if (!this.level.isActive) return;
         const rect = this.element[0].getBoundingClientRect();
