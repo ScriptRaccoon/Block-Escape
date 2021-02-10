@@ -19,9 +19,12 @@ export class Level {
             return;
         }
         this.isActive = false;
+        this.removedBlocks = [];
     }
 
     start() {
+        $("#game").html("");
+        this.isActive = true;
         for (const player of this.playerList) {
             $("<div></div>")
                 .addClass("goal")
@@ -31,23 +34,28 @@ export class Level {
         for (const block of this.blockList) {
             block.element.appendTo("#game");
         }
-        this.isActive = true;
         $("#levelInfo").addClass("scaleUp");
         setTimeout(() => {
             $("#levelInfo").removeClass("scaleUp");
         }, 2000);
     }
 
-    finish() {
-        $("#game").html("");
-        this.isActive = false;
-        this.won = true;
+    handleWin() {
+        if (this.playerList.every((player) => player.finished)) {
+            this.won = true;
+            setTimeout(() => {
+                this.game.switchLevel();
+            }, 1000);
+        }
     }
 
-    handleWin() {
-        if (!this.playerList.every((player) => player.finished)) return;
-        setTimeout(() => {
-            this.game.switchLevel();
-        }, 1000);
+    restore() {
+        for (const block of this.removedBlocks) {
+            this.blockList.push(block);
+        }
+        for (const block of this.blockList) {
+            block.restore();
+        }
+        this.removedBlocks = [];
     }
 }

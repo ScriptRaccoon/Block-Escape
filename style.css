@@ -72,17 +72,22 @@ main {
 /* info */
 
 #info {
-    padding-top: 20px;
+    padding: 20px 10px 0px 10px;
     font-size: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .scaleUp {
     animation: scaleUp 1s forwards;
 }
 
-#levelInfo {
-    display: inline-block;
+#info i {
+    cursor: pointer;
+}
+
+#info i:hover {
+    transform: scale(1.1);
 }
 
 @keyframes scaleUp {

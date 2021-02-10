@@ -14,6 +14,7 @@ export class Block {
         this.size = size;
         this.isPlayer = false;
         this.type = null;
+        this.originalPos = [...pos];
 
         if (this.size[0] > 1 && this.size[1] === 1) {
             this.type = TYPE.HORIZONTAL;
@@ -24,6 +25,10 @@ export class Block {
             return;
         }
 
+        this.generateElement();
+    }
+
+    generateElement() {
         this.element = $("<div></div>")
             .addClass("block")
             .css({
@@ -55,6 +60,17 @@ export class Block {
         this.element.remove();
         const i = this.level.blockList.indexOf(this);
         this.level.blockList.splice(i, 1);
+        this.level.removedBlocks.push(this);
+    }
+
+    restore() {
+        this.pos = [...this.originalPos];
+        this.element.remove();
+        this.generateElement();
+        if (this.isPlayer) {
+            this.element.addClass("player");
+            this.finished = false;
+        }
     }
 
     handleClick(e) {
